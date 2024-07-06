@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
+import { component$, useSignal, $, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./counter.module.css";
 import Gauge from "../gauge";
 
@@ -13,6 +13,11 @@ export default component$((props: { initialValue: number }) => {
         celebrate();
       }
     }
+  });
+
+  useVisibleTask$(() => {
+    console.log("Counter is visible");
+    count.value = 30;
   });
 
   return (
